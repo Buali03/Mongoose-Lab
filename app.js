@@ -31,3 +31,32 @@ async function getAllRecipes() {
 }
 
 getAllRecipes();
+
+async function updateRecipe() {
+  const updatedRecipe = await Recipe.findByIdAndUpdate(recipeID, { new: true });
+  console.log(updatedRecipe);
+}
+
+updateRecipe();
+
+async function deleteRecipe() {
+  try {
+    const deletedRecipe = await Recipe.findByIdAndDelete(recipeID);
+    console.log("Recipe Successfully Deleted");
+  } catch (error) {
+    console.log("Error Deleting", error);
+  }
+}
+
+deleteRecipe();
+
+async function getRecipeByID() {
+  try {
+    const foundRecipe = await Recipe.findById(recipeID);
+    console.log(foundRecipe);
+  } catch (error) {
+    console.log("No recipe with this ID exists.");
+  }
+}
+
+getRecipeByID();
