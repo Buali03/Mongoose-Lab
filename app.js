@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
-const Recipe = require("/./models/Recipe");
+const Recipe = require("./models/Recipe");
+const dotenv = require('dotenv').config()
 
 async function connectToDB() {
   try {
-    await mongoose.connect(MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("Connected to Database");
   } catch (error) {
     console.log("Connection failed");
@@ -33,7 +34,7 @@ async function getAllRecipes() {
 getAllRecipes();
 
 async function updateRecipe() {
-  const updatedRecipe = await Recipe.findByIdAndUpdate(recipeID, { new: true });
+  const updatedRecipe = await Recipe.findByIdAndUpdate("68820be823ce09834a27fcb6", { new: true });
   console.log(updatedRecipe);
 }
 
@@ -41,7 +42,7 @@ updateRecipe();
 
 async function deleteRecipe() {
   try {
-    const deletedRecipe = await Recipe.findByIdAndDelete(recipeID);
+    const deletedRecipe = await Recipe.findByIdAndDelete("68820be823ce09834a27fcb6");
     console.log("Recipe Successfully Deleted");
   } catch (error) {
     console.log("Error Deleting", error);
@@ -52,7 +53,7 @@ deleteRecipe();
 
 async function getRecipeByID() {
   try {
-    const foundRecipe = await Recipe.findById(recipeID);
+    const foundRecipe = await Recipe.findById("68820be823ce09834a27fcb6");
     console.log(foundRecipe);
   } catch (error) {
     console.log("No recipe with this ID exists.");
